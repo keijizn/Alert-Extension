@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Configurar alerta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 0 16px;
+      background: #faf8f6;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 12px;
+      background: #d96565;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    button.secondary {
+      background: #e9e3de;
+      color: #444;
+    }
+
+    #opacityValue {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+
+    .hint {
+      font-size: 13px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .row button {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .blocked-item {
+      border: 1px solid #e8dfd9;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+      background: #fcfbfa;
+    }
+
+    .blocked-url {
+      font-weight: bold;
+      margin-bottom: 6px;
+      word-break: break-word;
+    }
+
+    .blocked-meta {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .item-actions button {
+      width: auto;
+      padding: 10px 16px;
+      margin-top: 0;
+    }
+
+    .btn-edit {
+      background: #fff7f7;
+      color: #8b5a5a;
+      border: 1px solid #e8dada;
+    }
+
+    .btn-delete {
+      background: #fff1f1;
+      color: #c74848;
+      border: 1px solid #efc2c2;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Configurar bloqueio</h2>
+
+    <label for="targetUrl">Link do site</label>
+    <input id="targetUrl" type="text">
+
+    <label for="message">Mensagem</label>
+    <textarea id="message"></textarea>
+
+    <label for="gifUrl">GIF</label>
+    <input id="gifUrl" type="text">
+
+    <label for="refugeUrl">Link de refúgio</label>
+    <input id="refugeUrl" type="text">
+
+    <label for="refugeButtonText">Texto do botão</label>
+    <input id="refugeButtonText" type="text">
+
+    <div class="row">
+      <div style="flex:1; min-width:250px;">
+        <label for="wallpaperFile">Wallpaper</label>
+        <input id="wallpaperFile" type="file" accept="image/*">
+        <div class="hint">Depois de escolher a imagem, clique em Salvar configurações visuais.</div>
+      </div>
+
+      <div style="flex:1; min-width:220px;">
+        <label for="theme">Tema</label>
+        <select id="theme">
+          <option value="soft">Soft</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="danger">Danger</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="opacity">Transparência do pop-up</label>
+    <input id="opacity" type="range" min="0" max="100" value="60">
+    <div id="opacityValue">60%</div>
+
+    <div class="row">
+      <button id="saveBlockBtn">Adicionar bloqueio</button>
+      <button id="clearFormBtn" type="button" class="secondary">Limpar formulário</button>
+      <button id="saveVisualBtn" type="button" class="secondary">Salvar configurações visuais</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Sites bloqueados</h3>
+    <div id="blockedList"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Alerta de Site",
+  "version": "1.0.0",
+  "description": "Mostra um pop-up grande ao entrar em um site cadastrado.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
